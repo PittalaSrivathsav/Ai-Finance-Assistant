@@ -196,13 +196,23 @@ export const FinanceProvider = ({ children }) => {
   const logoutUser = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('activeTab');
+    if (window.google?.accounts?.id) {
+      try {
+        window.google.accounts.id.disableAutoSelect();
+      } catch (e) {
+        // ignore if not loaded
+      }
+    }
     setUser({ name: '', email: '', isAuthenticated: false });
     setTransactions([]);
     setBudgets(DEFAULT_BUDGET_CATEGORIES);
     setInsights([]);
     setDashboardData(null);
+    setForecastData(null);
     setActiveTab('landing');
   };
+
 
   // Real-time AI Categorization with custom user categories awareness & backend ML model
   const predictCategory = async (description) => {

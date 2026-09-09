@@ -13,7 +13,7 @@ import {
 import { useFinance } from '../context/FinanceContext';
 
 export const Sidebar = () => {
-  const { activeTab, setActiveTab, setUser } = useFinance();
+  const { activeTab, setActiveTab, logoutUser } = useFinance();
 
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -25,9 +25,9 @@ export const Sidebar = () => {
   ];
 
   const handleLogout = () => {
-    setUser({ name: '', email: '', isAuthenticated: false });
-    setActiveTab('landing');
+    logoutUser();
   };
+
 
   return (
     <aside className="w-64 bg-white border-r border-slate-200 min-h-screen flex flex-col justify-between py-6 px-4 shrink-0 select-none">

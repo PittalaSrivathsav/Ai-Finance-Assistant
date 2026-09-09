@@ -3,12 +3,12 @@ import { User, Mail, Shield, Sparkles, CheckCircle2, LogOut } from 'lucide-react
 import { useFinance } from '../context/FinanceContext';
 
 export const ProfilePage = () => {
-  const { user, setUser, setActiveTab, transactions, budgets } = useFinance();
+  const { user, logoutUser, setActiveTab, transactions, budgets } = useFinance();
 
   const handleLogout = () => {
-    setUser({ name: '', email: '', isAuthenticated: false });
-    setActiveTab('landing');
+    logoutUser();
   };
+
 
   return (
     <div className="space-y-6 pb-10 max-w-3xl animate-in fade-in duration-200">
