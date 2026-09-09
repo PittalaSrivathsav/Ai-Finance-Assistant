@@ -25,14 +25,15 @@ app = FastAPI(
     description="API for AI Finance Assistant with NLP Machine Learning Categorization, Forecasting, and Budget Management."
 )
 
-# CORS middleware for React frontend
+# CORS middleware for React frontend (supports all Vercel domains, localhost, etc.)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origin_regex=r".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # Mount routers
 app.include_router(auth_router, prefix=settings.API_V1_STR)
